@@ -8,7 +8,11 @@ export default {
     scope: 'openid'
   },
   firebase: {
-    apiKey: 'AIzaSyAcsyreHUoTZMMTr04VS8sk0UrLBOrdiFg',
-    projectId: 'project-1167304304'
+    apiKey: "AIzaSyCSJrmRabzA9DMcvWipsvnh_e2OlwFuh1s",
+    authDomain: "vota-sp-prod.firebaseapp.com",
+    databaseURL: "https://vota-sp-prod.firebaseio.com",
+    projectId: "vota-sp-prod",
+    storageBucket: "vota-sp-prod.appspot.com",
+    messagingSenderId: "1087599798352"
   }
 };
