@@ -39,7 +39,7 @@ class Principal extends Component {
         this.props.candidateAnswers.forEach(answers => {
           if(user.id === answers.id){
             this.props.users[userIndex].answers = answers;
-            this.props.users[userIndex].numAnswers = Object.keys(answers).length;
+            this.props.users[userIndex].numAnswers = Object.keys(answers).length - 1;
           }
         });
       } else if (role === 'voter') {
@@ -71,7 +71,8 @@ class Principal extends Component {
       let listCandidates = [];
       let listVoters = [];
       let listOtherUsers = [];
-      let numCandidates = 0;
+      let numCandidatesFederal = 0;
+      let numCandidatesEstadual = 0;
       let numVoters = 0;
       let partidos = {};
       let cities = {};
@@ -80,7 +81,8 @@ class Principal extends Component {
         for (let user of this.props.users) {
           //console.log(user.name);
           if (user.role === "candidate") {
-            numCandidates++;
+            user.level === 'federal' ? numCandidatesFederal++ : null;
+            user.level === 'estadual' ? numCandidatesEstadual++ : null; 
             if (cities[user.city]) {
               cities[user.city] += 1;
             } else {
@@ -94,11 +96,15 @@ class Principal extends Component {
             listCandidates.push(
               <tr key={i}>
                 <td>{user.name}</td>
+                <td>{user.city}</td>
                 <td>{user.role}</td>
                 <td>{user.level}</td>
                 <td>{user.politicalParty}</td>
                 <td>{user.numAnswers}</td>
                 <td>{user.homologated ? 'sim' : 'não'}</td>
+                <td>{user.cnpj}</td>
+                <td>{user.email}</td>
+                <td>{user.number}</td>
               </tr>
             );
           } else if (user.role === "voter") {
@@ -144,7 +150,8 @@ class Principal extends Component {
         <div>
           <h2>Estatísticas do VotaSP</h2>
           <h3>Numero de Eleitores e Eleitoras: {numVoters}</h3>
-          <h3>Numero de Candidatos e Candidatas: {numCandidates}</h3>
+          <h3>Numero de Candidatos e Candidatas a Estadual : {numCandidatesEstadual}</h3>
+          <h3>Numero de Candidatos e Candidatas a Federal : {numCandidatesFederal}</h3>
           <table className="PartiesTable">
             <thead>
               <tr>
@@ -157,15 +164,19 @@ class Principal extends Component {
             </tbody>
           </table>
           <h2>Listagem de Candidatas e Candidatos</h2>
-          <table className="PartiesTable">
+          <table>
             <thead>
               <tr>
                 <th>Nome</th>
+                <th>Cidade</th>
                 <th>Candidato</th>
                 <th>Level</th>
                 <th>Partido</th>
                 <th>Num Respostas</th>
                 <th>Homologado</th>
+                <th>CNPJ</th>
+                <th>Email</th>
+                <th>Numero</th>
               </tr>
             </thead>
             <tbody>
