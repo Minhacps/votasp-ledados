@@ -1,3 +1,5 @@
 export {
-  onLoadData
+  onLoadUsers,
+  onLoadCandidateAnswers,
+  onLoadVoterAnswers
 } from './loadData';

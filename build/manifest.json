@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "VotaSP",
+  "name": "Estatísticas do VotaSP",
   "icons": [
     {
       "src": "favicon.ico",
