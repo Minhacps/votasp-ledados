@@ -183,7 +183,7 @@ class Principal extends Component {
               {listCandidates}
             </tbody>
           </table>
-          <h1>Listagem de Eleitoras e Eleitores</h1>
+          {/* <h1>Listagem de Eleitoras e Eleitores</h1>
           <table className="PartiesTable">
             <thead>
               <tr>
@@ -194,7 +194,7 @@ class Principal extends Component {
             <tbody>
               {listVoters}
             </tbody>
-          </table>
+          </table> */}
           <h2>Cidades</h2>
           <table>
             <thead>
