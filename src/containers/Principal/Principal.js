@@ -152,6 +152,7 @@ class Principal extends Component {
           <h3>Numero de Eleitores e Eleitoras: {numVoters}</h3>
           <h3>Numero de Candidatos e Candidatas a Estadual : {numCandidatesEstadual}</h3>
           <h3>Numero de Candidatos e Candidatas a Federal : {numCandidatesFederal}</h3>
+          <h3>Numero de Partidos : {pagePartidos.length}</h3>
           <table className="PartiesTable">
             <thead>
               <tr>
