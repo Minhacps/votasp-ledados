@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 import * as actions from '../../store/actions';
 import Loader from '../../components/Loader/Loader';
@@ -32,6 +32,14 @@ class Principal extends Component {
     return 0;
   }
 
+  compare1 = (a, b) => {
+    if (a.key < b.key)
+      return -1;
+    if (a.key > b.key)
+      return 1;
+    return 0;
+  }
+
   contaRespostas = () => {
     this.props.users.forEach( (user, userIndex) => {
       let role = user.role;
@@ -43,9 +51,8 @@ class Principal extends Component {
           }
         });
       } else if (role === 'voter') {
-//
+//        
       }
-      console.log(this.props.users);
     });
   }
 
@@ -61,6 +68,7 @@ class Principal extends Component {
       page = <Loader />
     } else {
       if (this.props.users) {
+        console.log(this.props.users);
         this.props.users.sort(this.compare);
       }
       if (this.props.users && this.props.candidateAnswers && this.props.voterAnswers) {
@@ -128,6 +136,8 @@ class Principal extends Component {
         }
       }
       let pagePartidos = [];
+
+
       for (let partido in partidos) {
         pagePartidos.push(
           <tr key={partido}>
@@ -136,6 +146,8 @@ class Principal extends Component {
           </tr>
         );
       }
+
+      pagePartidos.sort(this.compare1);
 
       let pageCities = [];
       for (let city in cities) {
@@ -146,6 +158,8 @@ class Principal extends Component {
           </tr>
         );
       }
+      pageCities.sort(this.compare1);
+
       page = (
         <div>
           <h2>Estatísticas do VotaSP</h2>
