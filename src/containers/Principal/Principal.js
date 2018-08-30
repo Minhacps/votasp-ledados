@@ -68,13 +68,12 @@ class Principal extends Component {
       page = <Loader />
     } else {
       if (this.props.users) {
-        console.log(this.props.users);
+        // console.log(this.props.users);
         this.props.users.sort(this.compare);
       }
       if (this.props.users && this.props.candidateAnswers && this.props.voterAnswers) {
         this.contaRespostas();
       }
-
       //console.log(this.props.users);
       let listCandidates = [];
       let listVoters = [];
@@ -89,8 +88,12 @@ class Principal extends Component {
         for (let user of this.props.users) {
           //console.log(user.name);
           if (user.role === "candidate") {
-            user.level === 'federal' ? numCandidatesFederal++ : null;
-            user.level === 'estadual' ? numCandidatesEstadual++ : null; 
+            if( user.level === 'federal' && user.numAnswers === 40){
+              numCandidatesFederal++;
+            }
+            if(user.level === 'estadual' && user.numAnswers === 40){
+              numCandidatesEstadual++;
+            } 
             if (cities[user.city]) {
               cities[user.city] += 1;
             } else {
